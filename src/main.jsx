@@ -5,11 +5,14 @@ import './index.css'
 
 import router from './Router/Router.jsx'
 import { RouterProvider } from 'react-router-dom'
+import ShopDataProvider from './Providers/ShopDataProvider'
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}>
-    </RouterProvider>
+    <ShopDataProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </ShopDataProvider>
 
   </React.StrictMode>,
 )

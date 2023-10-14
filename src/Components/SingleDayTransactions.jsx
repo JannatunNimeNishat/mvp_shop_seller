@@ -1,23 +1,27 @@
 import { parse, format } from 'date-fns';
-import { useState } from 'react';
+import {  useContext, useState } from 'react';
 
 import up_icon from '../assets/transaction_history/up.png'
 import down_icon from '../assets/transaction_history/down.png'
+import { ShopContextProvider } from '../Providers/ShopDataProvider';
+
 
 
 const SingleDayTransactions = ({ singleDayTransactionsData }) => {
-
+    const {filterDateState} = useContext(ShopContextProvider);
+    console.log(filterDateState);
+    
     const [showDetails, setShowDetails] = useState(false);
 
-    console.log(singleDayTransactionsData);
+    // console.log(singleDayTransactionsData);
     // date formateing
-    const { created_at, cash_collected, name, order_value, reward_balance_after,points_redeemed, reward_balance_before, } = singleDayTransactionsData || {};
+    const { created_at, cash_collected, name, order_value, reward_balance_after, points_redeemed, reward_balance_before, } = singleDayTransactionsData || {};
     const parsedDate = parse(created_at, "EEE, dd MMM yyyy HH:mm:ss 'GMT'", new Date());
 
-    const trans_date = format(parsedDate, "MMMM yyyy")
+    const trans_date = format(parsedDate, "EEE dd MMMM yyyy")
     return (
         <div className='px-3'>
-           {/*  <div className='flex justify-between px-3'>
+            {/*  <div className='flex justify-between px-3'>
                 <h3 className='text-2xl font-semibold'>{trans_date}</h3>
                 <p className='text-2xl font-semibold'>&#8377;{cash_collected}</p>
             </div> */}
@@ -27,26 +31,27 @@ const SingleDayTransactions = ({ singleDayTransactionsData }) => {
             >
                 <div className=' flex justify-between items-center'>
                     <div className='flex gap-5 items-center'>
-                        <img className='h-16 w-16 rounded-full' src="https://i.ibb.co/tCSXZRf/m2.jpg" alt="" />
+                        <img className='h-14 w-14 rounded-full' src="https://i.ibb.co/tCSXZRf/m2.jpg" alt="" />
                         <p className='text-xl'>{name || ` Pankaj Sharma`}</p>
+                        <p>{trans_date}</p>
                     </div>
                     <div className='flex items-center gap-4'>
                         <p className='text-xl font-semibold'>&#8377;{cash_collected}</p>
                         {/* down */}
                         <button
-                         className={`${showDetails === true ? 'hidden':''}`}
+                            className={`${showDetails === true ? 'hidden' : ''}`}
                         >
-                            <img className='h-6 w-6 cursor-pointer' src={down_icon} alt="" 
-                            onClick={() => setShowDetails(!showDetails)}
+                            <img className='h-6 w-6 cursor-pointer' src={down_icon} alt=""
+                                onClick={() => setShowDetails(!showDetails)}
                             />
                         </button>
 
                         {/* up */}
                         <button
-                        className={`${showDetails === true ? '':'hidden'}`}
-                        > 
-                            <img className='h-5 w-5 cursor-pointer' src={up_icon} alt="" 
-                            onClick={() => setShowDetails(!showDetails)}
+                            className={`${showDetails === true ? '' : 'hidden'}`}
+                        >
+                            <img className='h-5 w-5 cursor-pointer' src={up_icon} alt=""
+                                onClick={() => setShowDetails(!showDetails)}
                             />
                         </button>
 
@@ -61,7 +66,7 @@ const SingleDayTransactions = ({ singleDayTransactionsData }) => {
                             <p className='text-center text-[18px] mt-1'>Order <br /> Value</p>
                         </div>
                         <div className='bg-[#ecd2a0] rounded-[10px] w-[120px] h-[120px] flex flex-col justify-center items-center'>
-                           
+
                             <h3 className='text-xl font-semibold'>&#8377;{points_redeemed}</h3>
                             <p className='text-center text-[18px] mt-1'>Loyalty <br /> Used</p>
                         </div>
