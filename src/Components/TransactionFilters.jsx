@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { ShopContextProvider } from "../Providers/ShopDataProvider";
 // import { DateRangePicker } from "react-date-range";
 
-import { addDays, format, toDate } from 'date-fns';
+import { addDays, format } from 'date-fns';
 
 import { DateRangePicker } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main css file
@@ -10,7 +10,7 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 
 const TransactionFilters = () => {
 
-    const { handleModalState,handleFilterData,filterDateState } = useContext(ShopContextProvider);
+    const { handleModalState,handleFilterData } = useContext(ShopContextProvider);
     const [activeTab, setActiveTab] = useState(false);
     const [phoneNumber, setPhoneNumber] = useState('');
     // date

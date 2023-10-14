@@ -8,17 +8,20 @@ import { ShopContextProvider } from '../Providers/ShopDataProvider';
 
 
 const SingleDayTransactions = ({ singleDayTransactionsData }) => {
+
     const {filterDateState} = useContext(ShopContextProvider);
     console.log(filterDateState);
-    
+
     const [showDetails, setShowDetails] = useState(false);
 
-    // console.log(singleDayTransactionsData);
+   
+    const { created_at, cash_collected, name, order_value, points_redeemed } = singleDayTransactionsData || {};
+
     // date formateing
-    const { created_at, cash_collected, name, order_value, reward_balance_after, points_redeemed, reward_balance_before, } = singleDayTransactionsData || {};
     const parsedDate = parse(created_at, "EEE, dd MMM yyyy HH:mm:ss 'GMT'", new Date());
 
     const trans_date = format(parsedDate, "EEE dd MMMM yyyy")
+    
     return (
         <div className='px-3'>
             {/*  <div className='flex justify-between px-3'>
