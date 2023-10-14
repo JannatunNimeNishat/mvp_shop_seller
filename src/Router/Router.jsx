@@ -1,11 +1,20 @@
 import { createBrowserRouter } from "react-router-dom";
-import Dashboard from "../Pages/Dashboard/Dashboard";
+import Home from "../Pages/Home/Home";
+import TransactionHistory from "../Pages/TransactionHistory/TransactionHistory";
+
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Dashboard />
+        element: <Home/>,
+        children:[
+            {
+                path:'/transaction_history',
+                element:<TransactionHistory/>
+            }
+        ]
     }
+    
 ])
 
 

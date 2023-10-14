@@ -1,19 +1,25 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 import { BsSearch, BsBell, BsHeart, BsMoon } from "react-icons/bs";
 import { BiHomeAlt, BiPieChartAlt, BiWallet, BiLogOut } from "react-icons/bi";
-const Dashboard = () => {
+const Home = () => {
     return (
         <>
+            {/* 1st */}
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col items-center justify-center">
+                {/* content holder */}
+                <div className="drawer-content ">
 
                     {/* Page content here */}
                     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 
+                    <Outlet />
+
                 </div>
 
+
+                {/* 2nd */}
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
 
@@ -24,7 +30,6 @@ const Dashboard = () => {
                                 <p className="text-[16px]">Sir Lakshmi Store</p>
                             </div>
 
-
                             <div className="mt-[35px] flex flex-col gap-5">
                                 {/* search */}
                                 <div className="bg-[#F09F00] h-[50px] w-[220px] rounded-lg text-white flex items-center  justify-center gap-3 px-4">
@@ -33,33 +38,32 @@ const Dashboard = () => {
                                 </div>
 
                                 {/* home */}
-                                <NavLink to='/home' className={({ isActive }) => isActive ? 'active-route' : 'inactive-route'}>
+                                <NavLink to='/' className={({ isActive }) => isActive ? 'active-route' : 'inactive-route'}>
                                     <BiHomeAlt className="h-5 w-5" />
                                     Home</NavLink>
 
-
                                 {/* loyality */}
-                                <NavLink to='/dashboard/enrolledclasses' className={({ isActive }) => isActive ? 'active-route' : 'inactive-route'}>
+                                <NavLink to='/1' className={({ isActive }) => isActive ? 'active-route' : 'inactive-route'}>
                                     <BsBell className="h-5 w-5" />
                                     Loyality Setting
                                 </NavLink>
                                 {/* analytics */}
-                                <NavLink to='/dashboard/paymnethistory' className={({ isActive }) => isActive ? 'active-route' : 'inactive-route'}>
+                                <NavLink to='/2' className={({ isActive }) => isActive ? 'active-route' : 'inactive-route'}>
                                     <BiPieChartAlt className="h-5 w-5" />
                                     Analytics</NavLink>
 
                                 {/* profile setting */}
-                                <NavLink to='/dashboard/paymnethistory' className={({ isActive }) => isActive ? 'active-route' : 'inactive-route'}>
+                                <NavLink to='/3' className={({ isActive }) => isActive ? 'active-route' : 'inactive-route'}>
                                     <BsHeart className="h-5 w-5" />
                                     Profile Setting</NavLink>
 
                                 {/* Transaction History */}
-                                <NavLink to='/dashboard/paymnethistory' className={({ isActive }) => isActive ? 'active-route' : 'inactive-route'}>
+                                <NavLink to='/transaction_history' className={({ isActive }) => isActive ? 'active-route' : 'inactive-route'}>
                                     <BiWallet className="h-5 w-5" />
                                     Transaction History</NavLink>
 
                                 {/* logout */}
-                                <NavLink to='/dashboard/registered_events' className={({ isActive }) => isActive ? 'active-route' : 'inactive-route'}>
+                                <NavLink to='/4' className={({ isActive }) => isActive ? 'active-route' : 'inactive-route'}>
                                     <BiLogOut className="h-5 w-5" />
                                     Logout</NavLink>
 
@@ -79,4 +83,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default Home;
