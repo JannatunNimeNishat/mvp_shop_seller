@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import TransactionHistory from "../Pages/TransactionHistory/TransactionHistory";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import Home from "../Pages/Home/Home";
+import TransactionPage from "../Pages/TransactionPage/TransactionPage";
 
 
 const router = createBrowserRouter([
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
             {
                 path:'/home',
                 element:<Home/>
+            },
+            {
+                path:'/transaction_page/:phoneNumber',
+                element:<TransactionPage/>
             }
         ]
     }
