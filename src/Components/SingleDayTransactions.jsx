@@ -1,19 +1,16 @@
 import { parse, format } from 'date-fns';
-import {  useContext, useState } from 'react';
+import { useState } from 'react';
 
 import up_icon from '../assets/transaction_history/up.png'
 import down_icon from '../assets/transaction_history/down.png'
-import { ShopContextProvider } from '../Providers/ShopDataProvider';
+
 
 
 
 const SingleDayTransactions = ({ singleDayTransactionsData }) => {
 
-    const {filterDateState} = useContext(ShopContextProvider);
-    console.log(filterDateState);
 
     const [showDetails, setShowDetails] = useState(false);
-
    
     const { created_at, cash_collected, name, order_value, points_redeemed } = singleDayTransactionsData || {};
 
@@ -30,7 +27,7 @@ const SingleDayTransactions = ({ singleDayTransactionsData }) => {
             </div> */}
             {/*  */}
             <div className=' my-8  bg-[#faf3e5] rounded-xl px-6 py-5 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] '
-            // onClick={() => setShowDetails(true)}
+          
             >
                 <div className=' flex justify-between items-center'>
                     <div className='flex gap-5 items-center'>

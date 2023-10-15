@@ -118,7 +118,7 @@ const TransactionFilters = () => {
                     <div className=" border border-solid border-slate-200 px-6 py-4 flex items-center justify-between">
                         <p className="underline font-bold"
                         ></p>
-                        <button className="w-[172px] h-[50px] rounded-xl font-bold text-white bg-black"
+                        <button className="w-[172px] h-[50px] rounded-xl font-bold text-white bg-[#CC8700]"
                         onClick={handleFilterInput}
                         >
                             <p

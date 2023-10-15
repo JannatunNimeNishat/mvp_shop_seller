@@ -4,14 +4,17 @@ import { createContext, useEffect, useState } from "react";
 export const ShopContextProvider = createContext();
 
 const ShopDataProvider = ({ children }) => {
-
+    // all transactions data
     const [transactionData, setTransactionData] = useState([]);
 
-     // modal  state
-     const [filterModalState, setFilterModalState] = useState(false);
-     
-     //filter data
-     const [filterDateState, setfilterDateState] = useState(false);
+    // modal  state
+    const [filterModalState, setFilterModalState] = useState(false);
+
+    //filter data
+    const [filterDateState, setfilterDateState] = useState(false);
+
+    //successful transactions state
+    const [successfulTransactions, setSuccessfulTransactions] = useState([]);
 
     useEffect(() => {
         const getData = async () => {
@@ -21,7 +24,6 @@ const ShopDataProvider = ({ children }) => {
             try {
                 axios.post(`http://13.200.100.28:5000/api/fetchTransactionsBySellerID`, sellerId)
                     .then((res) => {
-                        // console.log(res?.data?.transactions);
                         setTransactionData(res?.data?.transactions);
                     })
             } catch (error) {
@@ -30,7 +32,7 @@ const ShopDataProvider = ({ children }) => {
         }
         getData();
 
-    }, [])
+    }, [successfulTransactions])
 
     // modal open close
     const handleModalState = () => {
@@ -39,18 +41,29 @@ const ShopDataProvider = ({ children }) => {
     }
 
     //filter deta handelar
-    const handleFilterData = (data) =>{
+    const handleFilterData = (data) => {
         console.log(data);
         setfilterDateState(data)
     }
 
+    //handleSuccessFull
+    const handleSuccessFulTransactions = (value) => {
+        console.log(value);
+        const previousSuccessFulTransactions = [...successfulTransactions];
+        setSuccessfulTransactions([
+            previousSuccessFulTransactions, value
+        ])
+    }
     const value = {
         user: 'ni7',
         transactionData,
         handleModalState,
         filterModalState,
         handleFilterData,
-        filterDateState
+        filterDateState,
+        successfulTransactions,
+        handleSuccessFulTransactions
+
     }
     return (
         <ShopContextProvider.Provider value={value}>
